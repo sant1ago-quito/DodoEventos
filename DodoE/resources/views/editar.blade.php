@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Editar Evento</title>
     <link rel="stylesheet" href="{{ asset('estilos.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body.fondo {
             min-height: 100vh;
@@ -26,17 +26,53 @@
             margin-bottom: 30px;
             text-shadow: 1px 1px 3px #000;
         }
-        </style>
+        .form-crear {
+            background: rgba(120, 0, 0, 0.85);
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        }
+        label {
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 22px;
+            border: 1.5px solid #b71c1c;
+            border-radius: 7px;
+            background: #fff;
+            color: #222;
+            font-size: 1.08rem;
+        }
+        .btn-rojo {
+            background: #b71c1c;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 12px 0;
+            font-size: 1.15rem;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-rojo:hover {
+            background: #e53935;
+        }
+    </style>
 </head>
-<body>
-     <!-- Navbar fijo arriba -->
+<body class="fondo">
+    <!-- Navbar fijo arriba -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('index') }}">DodoEventos</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarContenido">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
@@ -47,49 +83,50 @@
             </div>
         </div>
     </nav>
-      <h1>Bienvenido a DodoEventos</h1>
-    <h2>Editar evento</h2>
-    <form action="{{ route('actualizar', $evento->id) }}" method="POST">
-    @csrf
-    @method('PUT')
 
-    <label for="org">Organizador:</label>
-    <select name="fk_usuario">
-        @foreach($organizadores as $organizador)
-            <option value="{{ $organizador->id }}" {{ $evento->fk_usuario == $organizador->id ? 'selected' : '' }}>
-                {{ $organizador->nombre }}
-            </option>
-        @endforeach
-    </select><br><br>
+    <h1 class="titulo">Bienvenido a DodoEventos</h1>
+    <h2 class="subtitulo">Editar evento</h2>
 
-    <label for="nombre">Nombre del evento:</label>
-    <input type="text" name="nombre_evento" value="{{ $evento->nombre_evento }}" required><br><br>
+    <form action="{{ route('actualizar', $evento->id) }}" method="POST" class="form-crear">
+        @csrf
+        @method('PUT')
 
-    <label for="descripcion">Descripción:</label>
-    <input type="text" name="descripcion" value="{{ $evento->descripcion }}" required><br><br>
+        <label for="fk_usuario">Organizador:</label>
+        <select name="fk_usuario" id="fk_usuario" class="form-control" required>
+            @foreach($organizadores as $organizador)
+                <option value="{{ $organizador->id }}" {{ $evento->fk_usuario == $organizador->id ? 'selected' : '' }}>
+                    {{ $organizador->nombre }}
+                </option>
+            @endforeach
+        </select>
 
-    <label for="fecha">Fecha:</label>
-    <input type="date" name="fecha_evento" value="{{ $evento->fecha_evento }}" required><br><br>
+        <label for="nombre_evento">Nombre del evento:</label>
+        <input type="text" name="nombre_evento" id="nombre_evento" class="form-control" value="{{ $evento->nombre_evento }}" required>
 
-    <label for="hora">Hora:</label>
-    <input type="time" name="hora_evento" value="{{ $evento->hora_evento }}" required><br><br>
+        <label for="descripcion">Descripción:</label>
+        <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{ $evento->descripcion }}" required>
 
-    <label for="ubicacion">Ubicación:</label>
-    <input type="text" name="ubicacion" value="{{ $evento->ubicacion }}" required><br><br>
+        <label for="fecha_evento">Fecha:</label>
+        <input type="date" name="fecha_evento" id="fecha_evento" class="form-control" value="{{ $evento->fecha_evento }}" required>
 
-    <label for="estado">Estado:</label>
-    <select name="estado" required>
-        <option value="activo" {{ $evento->estado == 'activo' ? 'selected' : '' }}>Activo</option>
-        <option value="inactivo" {{ $evento->estado == 'inactivo' ? 'selected' : '' }}>Inactivo</option>
-    </select><br><br>
+        <label for="hora_evento">Hora:</label>
+        <input type="time" name="hora_evento" id="hora_evento" class="form-control" value="{{ $evento->hora_evento }}" required>
 
-    <label for="asistentes">Asistentes:</label>
-    <input type="number" name="asistentes" value="{{ $evento->asistentes }}" required><br><br>
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" name="ubicacion" id="ubicacion" class="form-control" value="{{ $evento->ubicacion }}" required>
 
-        <a href="{{route ('index')}}"><button type="submit">Actualizar Evento</button></a>
+        <label for="estado">Estado:</label>
+        <select name="estado" id="estado" class="form-control" required>
+            <option value="activo" {{ $evento->estado == 'activo' ? 'selected' : '' }}>Activo</option>
+            <option value="inactivo" {{ $evento->estado == 'inactivo' ? 'selected' : '' }}>Inactivo</option>
+        </select>
+
+        <label for="asistentes">Asistentes:</label>
+        <input type="number" name="asistentes" id="asistentes" class="form-control" value="{{ $evento->asistentes }}" required>
+
+        <button type="submit" class="btn-rojo">Actualizar Evento</button>
     </form>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 </html>
