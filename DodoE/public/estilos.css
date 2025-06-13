@@ -1,0 +1,86 @@
+/*.formulario {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}*/
+body {/*
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6fc;
+    */
+     margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('fondo.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: brightness(0.8);
+}
+.contenedor-login {
+    width: 400px;
+    margin: 50px auto;
+    background: #071739;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+label {
+    display: block;
+    color: white;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+.grupo-f{
+    margin-bottom: 15px;
+    text-align: left;
+}
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.form-control:focus{
+    border-color: #CDD5D8;
+    outline: none; 
+}
+.btn {
+    padding: 10px 100px;
+    border: none;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4b6382;
+    color: white;
+}
+/*landing*/
+.titulo {
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px #000;
+    margin-bottom: 20px;
+}
+
+.link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
