@@ -22,6 +22,27 @@
     </style>
 </head>
 <body class="fondo">
+    
+    
+    <!-- Navbar fijo arriba -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('ver') }}">DodoEventos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContenido">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('ver') }}">Inicio</a>
+                    </li>
+                </ul>
+                <a href="{{ route('logout') }}" class="btn btn-outline-light">Cerrar Sesión</a>
+            </div>
+        </div>
+    </nav>
+
     <h1 class="titulo text-center mt-4">Bienvenido a DodoEventos</h1>
     <div class="container mt-5">
         <h2 class="subtitulo text-center mb-4">Nuestros Eventos</h2>
@@ -129,7 +150,13 @@
             <a href="{{ route('crear') }}" class="btn btn-primary btn-lg link">Solicitar Evento</a>
         </div>
     </div>
-
+    @if(session('success'))
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            alert("{{ session('success') }}");
+        });
+    </script>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ class EventosController extends Controller
     public function guardar(Request $request)
     {
         ModelEventos::create($request->all());
-        return redirect()->route('indexEventos');
+        return redirect()->route('ver')->with('success', 'Evento creado correctamente, un administrador se pondrá en contacto contigo para confirmar los detalles del evento.');
     }
     public function eliminar()
     {
